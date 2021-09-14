@@ -1,3 +1,4 @@
+let fs = require('fs');
 class model{
     constructor(){
         this.filterType='All';
@@ -66,23 +67,47 @@ class model{
 
         this.UpdateList(this.filterType);
     }
-    UploadTodo(Todos){
+    LoadTodo(Title, IsDone){
+        const newToDo={title: Title, ID: this.ID, isDone: Boolean(IsDone)};
+        this.todos.push(newToDo);
+        this.ID=this.todos.length;
+    }
+    UploadTodo(){
         this.filterType='All';
         this.ID=0;
         this.todos=[];
         this.filterTodos=[];
-        for(let i=0; i<Todos.length; ++i){
-            this.LoadTodo(Todos[i].title, Todos[i].isDone);
+
+        let data='';
+        fs.readFile("../Database/DB.txt", (err, Data) => {
+            if(err) throw err;
+
+            data = Data;
+            console.log("Todos uploaded successfully");
+        });
+        data = data.spilit('-');
+        for(let i=0; i<data.length; ++i){
+            this.LoadTodo(data.spilit(',')[0], data.spilit(',')[1]);
         }
 
         this.UpdateList(this.filterType);
     }
     DownloadTodo(){
+        this.filterType = 'All';
+        this.UpdateList(this.filterType);
+        let result='';
 
-    }
-    LoadTodo(Title, IsDone){
-        const newToDo={title: Title, ID: this.ID, isDone: IsDone};
-        this.todos.push(newToDo);
-        this.ID=this.todos.length;
+        for(let i=0; i<this.todos.length; ++i){
+            result+=`${this.todos[i].title},${this.todos[i].isDone}`;
+            if(this.todos.length-1 != i){
+                result+='-';
+            }
+        }
+
+        fs.appendFile("../Database/DB.txt", result, (err) => {
+            if(err) throw err;
+
+            console.log("Todos downloaded to database successfully");
+        })
     }
 }

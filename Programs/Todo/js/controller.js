@@ -39,10 +39,10 @@ class controller{
         this.model.DoneToDo(ID);
     }
 
-    UploadConnection = todos => {
-        this.model.UploadTodo(todos);
+    UploadConnection = () => {
+        this.model.UploadTodo();
     }
-    DownloadConnection = todos => {
-
+    DownloadConnection = () => {
+        this.model.DownloadTodo();
     }
 }

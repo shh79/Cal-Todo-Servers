@@ -1,4 +1,3 @@
-let fs = require('fs');
 class view{
     constructor(){
         this.List=document.querySelector(".DoList");
@@ -144,20 +143,17 @@ class view{
     UploadTodo(Connection){
         document.querySelector("#UploadBTN").addEventListener('click', () => {
             if(window.confirm("Are you sure to Upload data from database?")){
-                let data = fs.readFile("./Database/DB.txt");
-                let output = [];
-                data = data.spilit('-');
-                for(let i=0; i<data.length; ++i){
-                    output.push({title: data.spilit(',')[0], isDone: data.spilit(',')[1]});
-                }
-    
-                Connection(output);
+                
+                Connection();
             }
         });
     }
     DownloadTodo(Connection){
-        if(window.confirm("Are you sure to Download data to database?")){
+        document.querySelector("#DownloadBTN").addEventListener('click', () => {
+            if(window.confirm("Are you sure to Download data to database?")){
 
-        }
+                Connection();
+            }
+        });
     }
 }
