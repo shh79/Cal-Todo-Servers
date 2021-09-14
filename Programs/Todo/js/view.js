@@ -14,13 +14,14 @@ class view{
 
         for(let i=todos.length-1;i>=0;--i){
             let type=(todos[i].isDone)? 'Completed' : 'Active';
+            let BTNTitle =(todos[i].isDone)? 'ReDo' : 'Done';
             this.List.innerHTML+=`
             <div class="DoItem ${type}">
                 <p>${todos[i].title}</p>
                 <div class="ButtonOfItems">
                     <button class="RemoveBTN">Remove</button>
                     <button>Edit</button>
-                    <button>Done</button>
+                    <button>${BTNTitle}</button>
                 </div>
                 <div class="IDKeeper">${todos[i].ID}</div>
             </div>

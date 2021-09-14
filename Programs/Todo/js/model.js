@@ -68,7 +68,8 @@ class model{
         this.UpdateList(this.filterType);
     }
     LoadTodo(Title, IsDone){
-        const newToDo={title: Title, ID: this.ID, isDone: Boolean(IsDone)};
+        let flag = (IsDone.toLowerCase() === 'true');
+        const newToDo={title: Title, ID: this.ID, isDone: flag};
         this.todos.push(newToDo);
         this.ID=this.todos.length;
     }
@@ -85,9 +86,9 @@ class model{
             data = Data;
             console.log("Todos uploaded successfully");
         });
-        data = data.spilit('-');
+        data = data.split('-');
         for(let i=0; i<data.length; ++i){
-            this.LoadTodo(data.spilit(',')[0], data.spilit(',')[1]);
+            this.LoadTodo(data[i].split(',')[0], data[i].split(',')[1]);
         }
 
         this.UpdateList(this.filterType);
