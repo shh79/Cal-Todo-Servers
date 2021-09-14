@@ -10,7 +10,6 @@ app.use(express.static('Programs'));
 app.use('/', router);
 
 router.get('/' , (req, res) => {
-    // let html = fs.readFile('UiOfServer.html');
     res.sendFile(path.join(__dirname+'/views/UiOfServer.html'));
 });
 

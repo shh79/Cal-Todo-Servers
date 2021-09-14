@@ -1,4 +1,3 @@
-let fs = require('fs');
 class model{
     constructor(){
         this.filterType='All';
@@ -73,19 +72,14 @@ class model{
         this.todos.push(newToDo);
         this.ID=this.todos.length;
     }
-    UploadTodo(){
+    UploadTodo(ReadDB){
         this.filterType='All';
         this.ID=0;
         this.todos=[];
         this.filterTodos=[];
 
         let data='';
-        fs.readFile("../Database/DB.txt", (err, Data) => {
-            if(err) throw err;
-
-            data = Data;
-            console.log("Todos uploaded successfully");
-        });
+        data = ReadDB('DB');  //replace DB with username in future(step 5).
         data = data.split('-');
         for(let i=0; i<data.length; ++i){
             this.LoadTodo(data[i].split(',')[0], data[i].split(',')[1]);
@@ -93,7 +87,7 @@ class model{
 
         this.UpdateList(this.filterType);
     }
-    DownloadTodo(){
+    DownloadTodo(WriteDB){
         this.filterType = 'All';
         this.UpdateList(this.filterType);
         let result='';
@@ -105,10 +99,6 @@ class model{
             }
         }
 
-        fs.appendFile("../Database/DB.txt", result, (err) => {
-            if(err) throw err;
-
-            console.log("Todos downloaded to database successfully");
-        })
+        WriteDB(result, 'DB');  //replace DB with username in future(step 5).
     }
 }

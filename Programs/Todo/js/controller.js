@@ -1,7 +1,8 @@
 class controller{
-    constructor(model,view){
+    constructor(model,view,file){
         this.model=model;
         this.view=view;
+        this.file=file;
 
         this.model.ListConnection(this.UpdateListConnection);
         this.view.FilterButtonsEventer(this.FilterConnection);
@@ -40,9 +41,9 @@ class controller{
     }
 
     UploadConnection = () => {
-        this.model.UploadTodo();
+        this.model.UploadTodo(file.ReadDB);
     }
     DownloadConnection = () => {
-        this.model.DownloadTodo();
+        this.model.DownloadTodo(file.WriteDB);
     }
 }
