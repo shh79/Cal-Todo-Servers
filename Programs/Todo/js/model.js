@@ -66,4 +66,23 @@ class model{
 
         this.UpdateList(this.filterType);
     }
+    UploadTodo(Todos){
+        this.filterType='All';
+        this.ID=0;
+        this.todos=[];
+        this.filterTodos=[];
+        for(let i=0; i<Todos.length; ++i){
+            this.LoadTodo(Todos[i].title, Todos[i].isDone);
+        }
+
+        this.UpdateList(this.filterType);
+    }
+    DownloadTodo(){
+
+    }
+    LoadTodo(Title, IsDone){
+        const newToDo={title: Title, ID: this.ID, isDone: IsDone};
+        this.todos.push(newToDo);
+        this.ID=this.todos.length;
+    }
 }

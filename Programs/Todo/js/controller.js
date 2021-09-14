@@ -9,6 +9,8 @@ class controller{
         this.view.RemoveTodo(this.RemoveConnection);
         this.view.EditTodo(this.EditConnection);
         this.view.DoneTodo(this.DoneConnection);
+        this.view.UploadTodo(this.UploadConnection);
+        this.view.DownloadTodo(this.DownloadConnection);
 
         this.UpdateListConnection(this.model.todos);
     }
@@ -37,4 +39,10 @@ class controller{
         this.model.DoneToDo(ID);
     }
 
+    UploadConnection = todos => {
+        this.model.UploadTodo(todos);
+    }
+    DownloadConnection = todos => {
+
+    }
 }

@@ -213,3 +213,37 @@ button.RemoveBTN{
 button.RemoveBTN:hover{
     background-color: var(--hover-Neg-color);
 }
+.server{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: space-between;
+    height: 10%;
+
+}
+.server button{
+    border: none;
+    border-radius: 3px;
+    font-family: var(--commen-font);
+    padding: 0px 10px 0px 10px;
+    font-size: 90%;
+    height: 100%;
+    width: 45%;
+    font-weight: bold;
+    text-align: center;
+}
+button.serverBTN:hover{
+    cursor: pointer;
+}
+#DownloadBTN{
+    background-color: var(--footer-color);
+}
+#DownloadBTN:hover{
+    background-color: var(--hover-footer-color);
+}
+#UploadBTN{
+    background-color: rgb(243, 17, 17);
+}
+#UploadBTN:hover{
+    background-color: rgb(218, 12, 12);
+}
