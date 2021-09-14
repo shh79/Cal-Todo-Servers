@@ -1,0 +1,595 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    height: 100vh;
+    min-width: 360px;
+    min-height: 410px;
+}
+:root {
+    --background-color: rgb(230, 230, 230);
+    --hover-color: rgb(207, 207, 207);
+    --underline-color: orange;
+    --number-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+.main{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 25px 45px repeat(16,1fr);
+    margin: 0 auto;
+    height: 100% ;
+    grid-template-areas: 
+    "Bar Bar Bar Bar"
+    "Type Type Type Type"
+    "Number Number Number Number"
+    "Number Number Number Number"
+    "Number Number Number Number"
+    "Operator Operator Operator Operator"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder"
+    "LayerHolder LayerHolder LayerHolder LayerHolder";
+}
+.Bar{
+    grid-area: Bar;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--background-color);
+}
+.HaveImg{
+    padding-top:1px;
+    padding-bottom:1px;
+}
+.HaveImg img{
+    align-items:center;
+    justify-content:center;
+    width:50%;
+    height:75%;
+}
+.Title {
+    display: flex;
+    flex-direction: row;
+    padding-left: 5px;
+    align-items: center;
+    justify-content: left;
+}
+.MainButton{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: right;
+
+}
+.MainButton button{
+    width: 35px;
+    height: 25px; 
+    border: none;
+    background-color: var(--background-color);
+}
+.MainButton button:hover{
+    background-color: var(--hover-color);
+}
+.MainButton .SpecialBtn:hover{
+    background-color: rgb(232, 17, 35);
+}
+.TypeOfCalculator{
+    grid-area: Type;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.TypeOfCalculator .List{
+    display: flex;
+    flex-direction: row;
+}
+.TypeOfCalculator .Title{
+    align-items: center;
+    justify-content: left;
+    font-size:22px;
+}
+.List button{
+    width: 45px;
+    height: 45px;
+    background-color: var(--background-color);
+    border: none;
+}
+.List button:hover{
+    background-color: var(--hover-color);
+}
+#UnknowedBtn img {
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+}
+.HistoryBtnField button {
+    width: 45px;
+    height: 45px;
+    border: none;
+    background-color: var(--background-color);
+}
+.HistoryBtnField button:hover{
+    background-color: var(--hover-color);
+}
+.NumberField{
+    grid-area: Number;
+    background-color: var(--background-color);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30% 70%;
+    font-family: var(--number-font);
+}
+.input{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 250%;
+    padding-right:10px;
+    font-weight: 700;
+}
+.tempHistory{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 70%;
+    padding-right:10px;
+    font-weight: 700;
+}
+.Operator{
+    grid-area: Operator;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.MemoryOptions{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+}
+.MemoryOptions button{
+    width: 20%;
+    height: 100%;
+    border: none;
+    background-color: var(--background-color)
+}
+.MemoryOptions button:hover{
+    background-color: rgb(124, 115, 119);
+}
+.MemoryPage{
+    width: 8%;
+    display: flex;
+}
+.MemoryPage button{
+    height: 100%;
+    width: 100%;
+    border: none;
+    background-color: var(--background-color)
+}
+.MemoryPage button:hover{
+    background-color: rgb(124, 115, 119);
+}
+button.Unvisiable {
+    color: gray;
+}
+button.Unvisiable:hover{
+    background-color: var(--background-color);
+}
+.LayerHolder{
+    grid-area: LayerHolder;
+    background-color: var(--background-color);
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+.Buttons{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(6,1fr);
+    grid-area: Buttons;
+    gap: 2px;
+    background-color:var(--background-color);
+    height: 100%;
+    grid-template-areas: 
+    "percent radical power2 one-dive-x"
+    "ce c backspace division"
+    "n7 n8 n9 mul"
+    "n4 n5 n6 minus"
+    "n1 n2 n3 plus"
+    "minus-plus n0 dot equal";
+}
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 25px;
+}
+.flex-center:hover{
+    background-color: var(--background-color);
+}
+.number{
+    background-color: rgb(250, 250, 250);
+}
+.func{
+    background-color: rgb(240, 240, 240);
+}
+.x3{
+    display: none;
+}
+.power3{
+    display: none;
+    grid-area: power3;
+}
+.percent {
+    grid-area: percent;
+}
+.ce {
+    grid-area: ce;
+}
+.c {
+    grid-area: c;
+}
+.backspace {
+    grid-area: backspace;
+}
+.division {
+    grid-area: division;
+}
+.radical {
+    grid-area: radical;
+}
+.n7 {
+    grid-area: n7;
+}
+.n8 {
+    grid-area: n8;
+}
+.n9 {
+    grid-area: n9;
+}
+.mul {
+    grid-area: mul;
+}
+.power2 {
+    grid-area: power2;
+}
+.n4 {
+    grid-area: n4;
+}
+.n5 {
+    grid-area: n5;
+}
+.n6 {
+    grid-area: n6;
+}
+.minus {
+    grid-area: minus;
+}
+.n1 {
+    grid-area: n1;
+}
+.n2 {
+    grid-area: n2;
+}
+.n3 {
+    grid-area: n3;
+}
+.plus {
+    grid-area: plus;
+}
+.one-dive-x {
+    grid-area: one-dive-x;
+}
+.minus-plus {
+    grid-area: minus-plus;
+}
+.n0 {
+    grid-area: n0;
+}
+.dot {
+    grid-area: dot;
+}
+.equal {
+    grid-area: equal;
+}
+.History{
+    display: none;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+}
+.TabItems{
+    height: 45px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    background-color: var(--background-color);
+    align-items: center;
+}
+.UnderLine{
+    border-bottom: 4px var(--underline-color) solid;
+}
+.HistoryMessage{
+    display: flex;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: var(--background-color);
+    height: 100%;
+}
+.HistorySection, .MemorySection{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.hidden{
+    display: none;
+}
+.Item2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 82vh;
+    overflow-y: auto;
+}
+.Item2::-webkit-scrollbar{
+    display: none;
+}
+#historyBTN:hover, #memoryBTN:hover{
+    cursor: pointer;
+}
+.historyItem, .memoryItem{
+    height: 65px;
+    cursor: default;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: right;
+}
+.clearMsg{
+    font-family: var(--number-font);
+    font-weight: bold;
+    margin: 2px 0px 0px 2px;
+    font-size: 15px;
+}
+.ClearBar{
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    flex-direction: row-reverse;
+    margin: 1px 1px 1px 1px;
+}
+.recycleBin{
+    padding: 5px 5px 0px 5px;
+}
+.recycleBin:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+.historyItem:hover, .memoryItem:hover{
+    background-color: var(--hover-color);
+}
+.memoryItem button{
+    display: none;
+}
+.memoryItem:hover button{
+    display: block;
+}
+.historyItemSec1{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 15px;
+    font-family: var(--number-font);
+    color: gray;
+}
+.historyItemSec2{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 25px;
+    font-family: var(--number-font);
+    font-weight: bold;
+}
+.memoryNum{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 25px;
+    font-family: var(--number-font);
+    font-weight: bold;
+}
+.memoryItemBTNs{
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    /* margin-right: 20px; */
+}
+.memoryItemBTNs button{
+    border: none;
+    background-color: var(--background-color);
+    width: 35px;
+    height: 27px;
+    padding: 2px 1px 2px 1px;
+}
+.memoryItemBTNs button:hover{
+    background-color: var(--underline-color);
+    color: var(--background-color);
+}
+.MiniHistory, .MiniMemory{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 90% 10%;
+    height: 100%;
+    cursor: default;
+    justify-items: right;
+    background-color: var(--background-color);
+    border-top: 2px solid;
+}
+.MiniHistory::-webkit-scrollbar, .MiniMemory::-webkit-scrollbar{
+    display: none;
+}
+.hiddenLayer{
+    display: none;
+}
+.MiniClearBar{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 2px;
+    align-items: center;
+}
+.Stage{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5px;
+    overflow-y: auto;
+}
+.Stage::-webkit-scrollbar{
+    display: none;
+}
+.StageItem{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: right;
+    height: 70px;
+    padding-right: 20px;
+    cursor: default;
+}
+.StageItem:hover{
+    background-color: var(--hover-color);
+}
+.StageItem button{
+    display: none;
+}
+.StageItem:hover button{
+    display: block;
+}
+.MiniRecycleBinH, .MiniRecycleBinM{
+    height: 100%;
+    width: 50px;
+    padding: 10px 5px 0px 10px;
+}
+.MiniRecycleBinH:hover, .MiniRecycleBinM:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+.MiniMemoryNum{
+    font-family: var(--number-font);
+    font-weight: bold;
+    font-size: 150%;
+}
+.backMiniHistory{
+    font-family: var(--number-font);
+    font-weight: bold;
+    font-size: 100%;
+}
+
+@media screen and (min-width:500px){
+    .main{
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        margin: 0 auto;
+        grid-template-areas: 
+        "Bar Bar Bar Bar Bar"
+        "Type Type Type History History"
+        "Number Number Number History History"
+        "Number Number Number History History"
+        "Number Number Number History History"
+        "Operator Operator Operator History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History";
+    }
+    .History{
+        display: grid;
+        grid-column: 4 / 6;
+        grid-row: 2 / end;
+        background-color: var(--background-color);
+    }
+    .HistoryBtnField, .MemoryPage{
+        display:none;
+    }
+    .MiniHistory, .MiniMemory{
+        display: none;
+    }
+}
+@media screen and (min-width:740px){
+    .main{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr fit-content(50%) fit-content(50%);
+        margin: 0 auto;
+        grid-template-areas: 
+        "Bar Bar Bar Bar Bar"
+        "Type Type Type History History"
+        "Number Number Number History History"
+        "Number Number Number History History"
+        "Number Number Number History History"
+        "Operator Operator Operator History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History"
+        "LayerHolder LayerHolder LayerHolder History History";
+    }
+    .History{
+        display: grid;
+        width: 295px;
+        align-self: start;
+        justify-self: right;
+        height: 100%;
+    }
+}
+@media screen and (min-height:620px) and (min-width:1024px){
+    .power3{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        font-size: 25px;
+    }
+    .Buttons{
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        grid-template-rows: repeat(5,1fr);
+        grid-area: Buttons;
+        gap: 2px;
+        background-color: var(--background-color);
+        height: 100%;
+        grid-template-areas: 
+        "percent ce c backspace division"
+        "radical n7 n8 n9 mul"
+        "power2 n4 n5 n6 minus"
+        "power3 n1 n2 n3 plus"
+        "one-dive-x minus-plus n0 dot equal";
+    }
+}

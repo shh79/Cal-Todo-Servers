@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ToDo List</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+</head>
+<body>
+    <div class="main">
+        <div class="WorkSpace">
+            <div class="DoList">
+                
+                <!-- <div class="DoItem Completed">
+                    <p>Item 1 Completed</p>
+                    <div class="ButtonOfItems">
+                        <button class="RemoveBTN">Remove</button>
+                        <button>Edit</button>
+                        <button class="active">ReDo</button>
+                    </div>
+                    <div class="IDKeeper">1001</div>
+                </div>
+                <div class="DoItem Active">
+                    <p>Item 2 Active</p>
+                    <div class="ButtonOfItems">
+                        <button class="RemoveBTN" onclick="this.parentNode.parentNode.remove();">Remove</button>
+                        <button onclick="SendDetailToEdit(this.parentNode.parentNode);">Edit</button>
+                        <button onclick="Done(this);">Done</button>
+                    </div>
+                    <div class="IDKeeper">1002</div>
+                </div>
+                <div class="DoItem Completed">
+                    <p>Item 3 Completed</p>
+                    <div class="ButtonOfItems">
+                        <button class="RemoveBTN" onclick="this.parentNode.parentNode.remove();">Remove</button>
+                        <button onclick="SendDetailToEdit(this.parentNode.parentNode);">Edit</button>
+                        <button class="active" onclick="Done(this);">ReDo</button>
+                    </div>
+                    <div class="IDKeeper">1003</div>
+                </div><div class="DoItem Active">
+                    <p>End Item Active</p>
+                    <div class="ButtonOfItems">
+                        <button class="RemoveBTN" onclick="this.parentNode.parentNode.remove();">Remove</button>
+                        <button onclick="SendDetailToEdit(this.parentNode.parentNode);">Edit</button>
+                        <button onclick="Done(this);">Done</button>
+                    </div>
+                    <div class="IDKeeper">1004</div>
+                </div> -->
+               
+            </div>
+            <div class="section">
+                <div class="buttons">
+                    <input id="DoTitle" type="text" onfocus="this.value=''" placeholder="Type Do title here...">
+                    <button id="SubmitBTN"><strong>Submit</strong></button>
+                    <input type="text" id="EditTitle" placeholder="Click on items for edit..." disabled="true">
+                    <div class="EditBTNs">
+                        <button id="NoBTN" disabled="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAD/ElEQVRoge3ay29VVRQG8F+10ktQoa0tOJPoQEQrc6NOfBRBrcxQnEFwwiPoFHVsHJk08e8wUQKJmOILSsVnLMXHRCUqJCYaKwTNdbD3yT7o7e095+7bNoQvObnJXWt9e52z9l57nbUP17Gy0JeRawgP4QHcgzsxijVR/id+wff4Gh/gBH7L6ENtNPA8juEfNCtef+ModmFgiX0Hq/EizpecuoTjOIwJbMIgborXYPxvAi/jvWhT2P+EQ8LDWRJsw3clB05jN9bW4FqHPZgp8X2LrVk8XQANvFka8BM8lpF/HJ+W+Cf1IDobBMebwqLdhxtzDxI5D2Beivb6XOQbhXA3MYt7cxG3wRjm4pjfRB+6wkiJcBq3dUtYAYNCim4Ka3JDXaKGNJ0+kvaDpcQanJSmWa01UyzsWWGzWy4MS7NisqrxNmlhL8WaWAxjUgIY79RotbRP7OuNX7VwUFr8HU2xl6R9ohcpti768Zng28HFlAeEUqGJR3vrVy08Ifh23iJR2SVliE5xQigxRms4NipE/v0O9fukTPpsO8VjUWl3BWemo82Xqt3MaLRp4lQFu73R5shCCkNCWX1JtQKw7FCnN1PHpsAgLuPKQn4+E4nfrUBaYARfSPvO7RV06+zYU9H+yVbC16PwcA1iOnvK3USijFcjx2uthG9H4VM1yWkfmRyRKFDMnrdaCc9F4aYuBqD1U88ViQKbI9fZVsKLUTjc5SD83/GcN0Gowpu40Ep4OQpXZRiIq6dSjulUxoDUJwA3ZCLuFDnbTwvimpla18xiL9Lv010M0C7FVtk0F8MO/0m/5TUyG3/vr0k+KjTo7sNXeBg/l+QX8EiU3S3UdXUjMxZ/W0ZkQrjL4zWIq2x2OSJTlCjbWwkHpaJxXQXSpS4ah6Si8daFlI5G8j0ViE/XdKh8M9MV7F6INu+0U3ouKs1UIP5Ydy9WM5GjE/ThjODjznaKA/gxKj5ew7FeY7vg2w86OIY4FJXPWHnNh88F3/Z3YtCQer0HeudXZRQPeE6FQ6Gt0WheytnLiS34S/Cp8lHGpPQEctRfdTEiNOWaeKMOQUNKrSctTxP7ZqHDUnRaap8zjghlQJHrR3J41yGG8KF0HNf1gc9GKbRz6tdiVbClNOY53JGLeL00zeaF3mt/LvIS+oXsVCzsU/K8v1yFhpQAmkJDOdfpa59wlFHsE8XC7unZ+7gU9qJrv1coOqtiSKidirKjmEo5T4vboiFMr6KcaQoV6RReEfpOm4W0vSpew8Kh0Y6oMyU1PIqyY79l+gJiQOiKHxFeAap+wnFFeDPdqcsbyNnVWCt8VPOg8N5/l5Cub4nyP/CrkErPCkcJU/g9ow/XsWLwL5eGYaYJGYloAAAAAElFTkSuQmCC"/></button>
+                        <button id="YesBTN" disabled="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAACOElEQVRoge3ZPWgUQRyG8V8SJX4gRgISUIKChWJjYQoRRRQsAkqqtKY0jShYWQTBRsukEEQrsbGw0CaCFloIoiBaiAiCIkEF8YMQUaLJWawhN7sbcplcMhH2gS3umPnP897sLjNzVFRUVFRUxNOWWqABWnAIO/EWtbQ68VyWyddwPbFLNMfMhqjhD1qTGkWwEWPCIE+SGkVyTXE2epIaRXAY08Igl5IaRbAOb4QhXmNtSqkYRoQhpnAgqVEE+2TPQn2QkaRGEbTjpTDEO2xIKRXDRWGIaRxNahTBHkwKg1xNahTBKjwThviATSmlYhgShqihL6lRBLvwUxjiRlKjCFrxSBjiMzanlIrhrOIt1Z/UKILtmBCGuJPUKIJWPBSG+I4tSzXgQdzDTXQ3se6g4i010MT6Ae34WjfQR+xtQt1ujAtDjDah7px0Ku4HJnB8kXVHczXHNXe2S6nf9Nfv0k5F1jtRUm9w8Zrz04LzJYPXcEW2tGiULnzJ1Xjwb4xlY0BxQVfDXY0vsW/l+v7AjqabNsARfFMM8wJb5+nbX9LvzJKZNsBu2UYnLzUmW4aX0YlPufaPrYATzi48VQwzjt6S9jdy7X7JfpAVwXrcVgzzGyfr2vWWtDm3rKYN0IZh5W+0YXTgfe7751idQrYRTsuOa8qem/rPk+Z+jlYMfbLXadnszFwXktktkB7Ft9PM9Qpr0qktnG2K51JT2J9SKpYO3DcbZCitzuJoke1l/ru/ACoqKiqWj7+IZuly42FRRgAAAABJRU5ErkJggg=="/></button>
+                        <div style="display: none;" id="editID"></div>
+                    </div>
+                </div>
+                <div class="filters">
+                    <button>Active</button>
+                    <button>Completed</button>
+                    <button class="active">All</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <h3><em>Developed by Hessam Hosseini</em></h3>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/view.js"></script>
+</body>
+</html>
