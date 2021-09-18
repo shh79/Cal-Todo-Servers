@@ -59,6 +59,19 @@ class model{
                 this.filterTodos=this.todos.filter(todo => todo.isDone==true);
                 break;
         }
+
+        let data = ``;
+        for(let i=0; i<this.todos.length; ++i){
+            data += `${this.todos[i].title},${this.todos[i].ID},${this.todos[i].isDone}`;
+            if(i != this.todos.length - 1){
+                data += `-`;
+            }
+        }
+        if(data == ``){
+            data = 'null';
+        }
+        localStorage.setItem(0, data);
+
         this.ViewConnection(this.filterTodos);
     }
     FilterChanger(Type){
@@ -72,33 +85,16 @@ class model{
         this.todos.push(newToDo);
         this.ID=this.todos.length;
     }
-    UploadTodo(ReadDB){
-        this.filterType='All';
-        this.ID=0;
-        this.todos=[];
-        this.filterTodos=[];
+    LoadLocalStorage(){
+        let data = localStorage[0];
+        if(data != undefined && data != 'null'){
+            data = data.split('-');
 
-        let data='';
-        data = ReadDB('DB');  //replace DB with username in future(step 5).
-        data = data.split('-');
-        for(let i=0; i<data.length; ++i){
-            this.LoadTodo(data[i].split(',')[0], data[i].split(',')[1]);
-        }
-
-        this.UpdateList(this.filterType);
-    }
-    DownloadTodo(WriteDB){
-        this.filterType = 'All';
-        this.UpdateList(this.filterType);
-        let result='';
-
-        for(let i=0; i<this.todos.length; ++i){
-            result+=`${this.todos[i].title},${this.todos[i].isDone}`;
-            if(this.todos.length-1 != i){
-                result+='-';
+            for(let i=0 ; i<data.length ; ++i){
+                let items = data[i].split(',');
+                let newTodo = {title: items[0], ID: items[1], isDone: (items[2] === 'true')};
+                this.todos.push(newTodo);
             }
         }
-
-        WriteDB(result, 'DB');  //replace DB with username in future(step 5).
     }
 }

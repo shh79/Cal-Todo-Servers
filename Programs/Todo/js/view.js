@@ -15,7 +15,7 @@ class view{
         for(let i=todos.length-1;i>=0;--i){
             let type=(todos[i].isDone)? 'Completed' : 'Active';
             let BTNTitle =(todos[i].isDone)? 'ReDo' : 'Done';
-            this.List.innerHTML+=`
+            let newTodo = `
             <div class="DoItem ${type}">
                 <p>${todos[i].title}</p>
                 <div class="ButtonOfItems">
@@ -26,6 +26,7 @@ class view{
                 <div class="IDKeeper">${todos[i].ID}</div>
             </div>
             `;
+            this.List.innerHTML += newTodo;
         }
     }
     FilterButtonsEventer(Connection){
@@ -138,22 +139,6 @@ class view{
                 event.target.innerText="Done";
                 event.target.classList.remove("active");
                 Connection(ID);
-            }
-        });
-    }
-    UploadTodo(Connection){
-        document.querySelector("#UploadBTN").addEventListener('click', () => {
-            if(window.confirm("Are you sure to Upload data from database?")){
-                
-                Connection();
-            }
-        });
-    }
-    DownloadTodo(Connection){
-        document.querySelector("#DownloadBTN").addEventListener('click', () => {
-            if(window.confirm("Are you sure to Download data to database?")){
-
-                Connection();
             }
         });
     }

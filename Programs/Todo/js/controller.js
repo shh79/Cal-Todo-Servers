@@ -1,17 +1,15 @@
 class controller{
-    constructor(model,view,file){
+    constructor(model,view){
         this.model=model;
         this.view=view;
-        this.file=file;
 
+        this.model.LoadLocalStorage();
         this.model.ListConnection(this.UpdateListConnection);
         this.view.FilterButtonsEventer(this.FilterConnection);
         this.view.SubmitTodo(this.SubmitConnection);
         this.view.RemoveTodo(this.RemoveConnection);
         this.view.EditTodo(this.EditConnection);
         this.view.DoneTodo(this.DoneConnection);
-        this.view.UploadTodo(this.UploadConnection);
-        this.view.DownloadTodo(this.DownloadConnection);
 
         this.UpdateListConnection(this.model.todos);
     }
@@ -38,12 +36,5 @@ class controller{
 
     DoneConnection = ID => {
         this.model.DoneToDo(ID);
-    }
-
-    UploadConnection = () => {
-        this.model.UploadTodo(file.ReadDB);
-    }
-    DownloadConnection = () => {
-        this.model.DownloadTodo(file.WriteDB);
     }
 }
