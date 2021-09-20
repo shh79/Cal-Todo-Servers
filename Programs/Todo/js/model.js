@@ -18,9 +18,26 @@ class model{
         }
     }
     AddTodo(Title){
+        while(true){
+            let flag = true;
+
+            for(let i=0; i<this.todos.length;++i){
+                flag = true;
+                if(this.ID == this.todos[i].ID){
+                    this.ID++;
+                    flag = false;
+                    break;
+                }
+            }
+
+            if(flag){
+                break;
+            }
+        }
         const newToDo={title: Title, ID: this.ID, isDone: false};
         this.todos.push(newToDo);
         this.ID=this.todos.length;
+        console.table(this.todos);
 
         this.UpdateList(this.filterType);
     }
@@ -92,9 +109,15 @@ class model{
 
             for(let i=0 ; i<data.length ; ++i){
                 let items = data[i].split(',');
-                let newTodo = {title: items[0], ID: items[1], isDone: (items[2] === 'true')};
+                let newTodo = {title: items[0], ID: Number(items[1]), isDone: (items[2] === 'true')};
                 this.todos.push(newTodo);
             }
         }
+    }
+    async Download(){
+        let adderss = `/download/:${localStorage[0]}`;
+        await fetch(adderss, {
+            method: 'POST',
+        });
     }
 }

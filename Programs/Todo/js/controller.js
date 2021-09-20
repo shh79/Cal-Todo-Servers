@@ -10,6 +10,7 @@ class controller{
         this.view.RemoveTodo(this.RemoveConnection);
         this.view.EditTodo(this.EditConnection);
         this.view.DoneTodo(this.DoneConnection);
+        this.view.Download(this.DownloadConnection);
 
         this.UpdateListConnection(this.model.todos);
     }
@@ -36,5 +37,9 @@ class controller{
 
     DoneConnection = ID => {
         this.model.DoneToDo(ID);
+    }
+
+    DownloadConnection = () => {
+        this.model.Download();
     }
 }

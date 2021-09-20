@@ -2,6 +2,7 @@ class view{
     constructor(){
         this.List=document.querySelector(".DoList");
         this.TodoTitle=document.querySelector("#DoTitle");
+        this.ServerSection = document.querySelector(".server");
     }
     GetTitle(){
         return this.TodoTitle.value;
@@ -139,6 +140,16 @@ class view{
                 event.target.innerText="Done";
                 event.target.classList.remove("active");
                 Connection(ID);
+            }
+        });
+    }
+    Download(Connection){
+        this.ServerSection.addEventListener("click", event => {
+            if(event.target.innerText=="Download"){
+                let isConfirm = confirm("Are you sure for download todos to your database?");
+                if(isConfirm){
+                    Connection();
+                }
             }
         });
     }

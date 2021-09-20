@@ -12,7 +12,7 @@
     <div class="main">
         <div class="WorkSpace">
             <div class="DoList">
-                
+
                 <!-- <div class="DoItem Completed">
                     <p>Item 1 Completed</p>
                     <div class="ButtonOfItems">
@@ -61,11 +61,12 @@
                         <div style="display: none;" id="editID"></div>
                     </div>
                     <div class="server">
-                        <form action="upload">
+                        <form action="/upload" method="POST">
+                            <!-- <button type="button" class="serverBTN" id="UploadBTN">Upload</button> -->
                             <button type="submit" class="serverBTN" id="UploadBTN">Upload</button>
                         </form>
-                        <form action="download">
-                            <button type="submit" class="serverBTN" id="DownloadBTN">Download</button>
+                        <form action="" method="POST">
+                            <button type="button" class="serverBTN" id="DownloadBTN">Download</button>
                         </form>
                     </div>
                 </div>
@@ -85,6 +86,5 @@
     <script src="js/controller.js"></script>
     <script src="js/model.js"></script>
     <script src="js/view.js"></script>
-    <script src="js/FileSystem.js"></script>
 </body>
 </html>
