@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="TodoLoginStyle.css">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="wrapper"></div>
+
+    <div class="centerLine">
+        <div class="banner">
+            <h1>Todo List</h1>
+            <p>Developed by Hessam Hosseini</p>
+        </div>
+        <div class="container">
+            <button class="tab" id="SignInBtn">Sign In</button>
+            <button class="tab" id="SignUpBtn"> Sign Up</button>
+
+            <div class="tabContainer " id="SignInPage">
+                <form action="">
+                    <input type="text" name="UserIn" id='UserIn' placeholder="Username">
+                    <input type="password" name="PassIn" id='PassIn' placeholder="Password">
+                    <br><br><br>
+                    <p>test paragraph : <%= temp %></p>
+                    <input type="button" id="green" value="Sign In">
+                    <br>
+                    <a href="http://localhost:2020/Todo/" id='guestLink'>Sign in as guest.</a>
+                </form>
+            </div>
+            <div class="tabContainer hidden" id="SignUpPage">
+                <form action="">
+                    <input type="text" name="UserUp" id="UserUp" placeholder="Username">
+                    <input type="password" name="PassUp" id="PassUp" placeholder="Password">
+                    <input type="password" name="RePassUp" id="RePassUp" placeholder="Re-Password">
+                    <input type="button" id="red" value="Sign Up">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="TodoLoginFuncs.js"></script>
+</body>
+</html>
