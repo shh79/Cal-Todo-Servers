@@ -4,6 +4,7 @@ let path = require('path');
 let URL = require('url');
 var opn = require('opn');
 const { json } = require('express');
+const { count } = require('console');
 let app = express();
 let router = express.Router();
 
@@ -22,8 +23,7 @@ app.get('/' , (req, res) => {
 
 app.get('/Login', (req, res) => {
     // res.sendFile(path.join(__dirname+'/views/LoginPage.ejs'))
-    res.render(path.join(__dirname+'/views/LoginPage.ejs'));
-    res.redirect('/SignIn');
+    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {temp: ''});
 });
 
 app.post('/download/:data', (req, res) => {
@@ -78,8 +78,6 @@ app.post('/SignIn/:data', (req, res) => {
     }
 
     res.render(path.join(__dirname+'/views/LoginPage.ejs'), {temp: 'hello'});
-
-    // res.redirect('/Login');
 
 });
 
