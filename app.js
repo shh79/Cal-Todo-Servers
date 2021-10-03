@@ -5,6 +5,8 @@ let URL = require('url');
 var opn = require('opn');
 const { json } = require('express');
 const { count } = require('console');
+const { strictEqual } = require('assert');
+const { stringify } = require('querystring');
 let app = express();
 let router = express.Router();
 
@@ -23,7 +25,7 @@ app.get('/' , (req, res) => {
 
 app.get('/Login', (req, res) => {
     // res.sendFile(path.join(__dirname+'/views/LoginPage.ejs'))
-    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {temp: ''});
+    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {alert: '', flag: true, data: '', SUAlert: ''});
 });
 
 app.post('/download/:data', (req, res) => {
@@ -56,32 +58,38 @@ app.post('/upload', (req, res) => {
     res.send(format);
 });
 
-app.post('/SignIn/:data', (req, res) => {
+app.get('/SignIn/:data', (req, res) => {
+    let todosData = '';
     let data = req.params.data;
     data = data.slice(1, data.length);
-    data = data.split(',');
-
-    let username = data[0], pass = data[1];
-    username = username.toLowerCase();
-
-    console.log(username, pass);
-    
-    let result = ConfirmValidation(username, pass);
-
-    console.log(result);
-
-    if(result.result){
-        OpenedUser = username;
+    if(data == 'guest'){
+        OpenedUser = 'guest';
+        todosData = ReadDB('guest'); 
+        res.render(path.join(__dirname+'/views/LoginPage.ejs'), {alert: '', flag: true, data: todosData, SUAlert: ''});
+        return;
     }
     else{
-        
+        data = data.split(',');
+
+        let username = data[0], pass = data[1];
+        username = username.toLowerCase();
+        pass = String(decoding(pass));
+
+        console.log(username, pass);
+    
+        let result = ConfirmValidation(username, pass);
+
+        console.log(result);
+
+        if(result.result){
+            OpenedUser = username;
+        }
+
+        res.render(path.join(__dirname+'/views/LoginPage.ejs'), {alert: result.alert, flag: result.result, data: todosData, SUAlert: ''});
     }
-
-    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {temp: 'hello'});
-
 });
 
-app.post('/SignUp/:data', (req, res, next) => {
+app.get('/SignUp/:data', (req, res) => {
     let data = req.params.data;
     data = data.slice(1, data.length);
     data = data.split(',');
@@ -89,14 +97,16 @@ app.post('/SignUp/:data', (req, res, next) => {
     let username = data[0], pass = data[1], rePass = data[2];
     username = username.toLowerCase();
 
+    pass = String(decoding(pass));
+    rePass = String(decoding(rePass));
+
     console.log(username, pass, rePass);
 
     let result = AddNewUser(username, pass, rePass);
 
     console.log(result);
 
-    res.redirect('/');
-    next();
+    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {alert: '', flag: true, data: '', SUAlert: result.alert})
 });
 
 ReadDB = (username) => {
@@ -121,8 +131,12 @@ AddNewUser = (username, password, rePassword) => {
     let Database = Fs.readFileSync(DatabaseAddress, {encoding:'utf8', flag:'r'});
     let obj = JSON.parse(Database);
 
+    if(username == '' || password == '' || rePassword == ''){
+        return {result : false, alert : 'Fill the blanks .'};
+    }
+
     if(password != rePassword){
-        return {result : false, alert : 'Password and repassword is not match.'};
+        return {result : false, alert : 'Password and repassword is not match .'};
     }
 
     if(obj[username] == undefined){
@@ -130,18 +144,18 @@ AddNewUser = (username, password, rePassword) => {
             obj[username] = {pass : password};
         }
         else{
-            return {result : false, alert : 'This password is so weak.'};
+            return {result : false, alert : 'This password is so weak .'};
         }
     }
     else{
-        return {result : false, alert : 'This username is already exist.'};
+        return {result : false, alert : 'This username is already exist .'};
     }
 
     Fs.writeFile(DatabaseAddress, JSON.stringify(obj), (err) => {
         if(err){
             throw err;
         }
-        console.log("New user is added.");
+        console.log("New user is added .");
     });
 
     WriteDB('null', username);
@@ -153,16 +167,20 @@ ConfirmValidation = (username, password) => {
     let Database = Fs.readFileSync(DatabaseAddress, {encoding:'utf8', flag:'r'});
     let obj = JSON.parse(Database);
 
+    if(username == '' || password == ''){
+        return {result : false, alert : 'Fill the blanks .'};
+    }
+
     if(obj[username] != undefined){
         if(password == obj[username].pass){
             return {result : true, alert : 'Confirmed'};
         }
         else{
-            return {result : false, alert : 'Password is incorrect.'};
+            return {result : false, alert : 'Password is incorrect .'};
         }
     }
     else{
-        return {result : false, alert : 'This username is not exist.'};
+        return {result : false, alert : 'This username is not exist .'};
     }
 }
 
@@ -181,6 +199,14 @@ IsPoweredPass = (pass) => {
     }
 
     return true;
+}
+
+decoding = (pass) => {
+    let result = '';
+    for(let i=pass.length-1; i>=0; --i){
+        result += pass[i];
+    }
+    return result;
 }
 
 app.listen(port, (err, res) => {

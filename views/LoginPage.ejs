@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="TodoLoginStyle.css">
+    <link rel="stylesheet" href="/style/TodoLoginStyle.css">
     <title>Login Page</title>
 </head>
 <body>
@@ -23,11 +23,18 @@
                 <form action="">
                     <input type="text" name="UserIn" id='UserIn' placeholder="Username">
                     <input type="password" name="PassIn" id='PassIn' placeholder="Password">
-                    <br><br><br>
-                    <p>test paragraph : <%= temp %></p>
-                    <input type="button" id="green" value="Sign In">
                     <br>
-                    <a href="http://localhost:2020/Todo/" id='guestLink'>Sign in as guest.</a>
+                    <% if(!flag) { %>
+                        <p class="alert">&nbsp;&nbsp;&nbsp;&nbsp;<%= alert %></p>
+                        <br>
+                    <% }
+                    else { %>
+                        <br><br>
+                    <% } %>
+
+                    <a href="/SignIn/:," id="green">Sign In</a>
+                    <br>
+                    <a href="/SignIn/:," id='guestLink'>Sign in as guest.</a>
                 </form>
             </div>
             <div class="tabContainer hidden" id="SignUpPage">
@@ -35,12 +42,14 @@
                     <input type="text" name="UserUp" id="UserUp" placeholder="Username">
                     <input type="password" name="PassUp" id="PassUp" placeholder="Password">
                     <input type="password" name="RePassUp" id="RePassUp" placeholder="Re-Password">
-                    <input type="button" id="red" value="Sign Up">
+                    <a href="/SignUp/:,," id="red">Sign Up</a>
+                    <br>
+                    <p class="alert">&nbsp;&nbsp;&nbsp;&nbsp;<%= SUAlert %></p>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="TodoLoginFuncs.js"></script>
+    <script src="/js/TodoLoginFuncs.js"></script>
 </body>
 </html>

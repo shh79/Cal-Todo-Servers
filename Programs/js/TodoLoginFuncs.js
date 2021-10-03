@@ -15,6 +15,14 @@ function OpenContainer(type){
     }
 }
 
+function encoding(pass){
+    let result = '';
+    for(let i=pass.length-1; i>=0; --i){
+        result += pass[i];
+    }
+    return result;
+}
+
 async function SignInFunc(username, pass){
     let adderss = `/SignIn/:${username},${pass}`;
     await fetch(adderss, {
@@ -37,27 +45,39 @@ document.querySelector("#SignUpBtn").addEventListener('click', () => {
     OpenContainer('up');
 });
 
-document.querySelector("#green").addEventListener('click', () => {
+document.querySelector("#green").addEventListener('click', (event) => {
     let username = document.querySelector("#UserIn").value;
     let pass = document.querySelector("#PassIn").value;
 
+    pass = String(encoding(pass));
+
     if(username != '' && pass != ''){
-        SignInFunc(username, pass);
+        event.target.href = `/SignIn/:${username},${pass}`;
     }
     else{
         alert("Please fill the blank.");
     }
 });
 
-document.querySelector("#red").addEventListener('click', () => {
+document.querySelector("#red").addEventListener('click', (event) => {
     let username = document.querySelector("#UserUp").value;
     let pass = document.querySelector("#PassUp").value;
     let rePass = document.querySelector("#RePassUp").value;
 
+    pass = String(encoding(pass));
+    rePass = String(encoding(rePass));
+
     if(username != '' && pass != '' && rePass != ''){
-        SignUpFunc(username, pass, rePass);
+        event.target.href = `/SignUp/:${username},${pass},${rePass}`;
     }
     else{
         alert("Please fill the blank.");
     }
+});
+
+document.querySelector("#guestLink").addEventListener('click', (event) => {
+    let username = document.querySelector("#UserIn").value;
+    let pass = document.querySelector("#PassIn").value;
+
+    event.target.href = `/SignIn/:${username},${pass}`;
 });
