@@ -12,6 +12,7 @@ class controller{
         this.view.DoneTodo(this.DoneConnection);
         this.view.Download(this.DownloadConnection);
         this.view.SignOut(this.SignOutConnection);
+        this.view.SignInUpBtn(this.SignInUpBtnConnection);
 
         this.UpdateListConnection(this.model.todos);
     }
@@ -46,5 +47,8 @@ class controller{
 
     SignOutConnection = () => {
         this.model.SignOut();
+    }
+    SignInUpBtnConnection = () =>{
+        this.model.SignInUpBtn();
     }
 }

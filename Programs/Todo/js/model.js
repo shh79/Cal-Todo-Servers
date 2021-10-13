@@ -123,4 +123,7 @@ class model{
     SignOut(){
         localStorage.clear();
     }
+    SignInUpBtn(){
+        localStorage.clear();
+    }
 }

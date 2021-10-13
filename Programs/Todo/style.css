@@ -85,12 +85,12 @@ html,body{
     cursor: pointer;
     background-color: var(--hover-Neg-color);
 }
-#signoutBtn:visited, #signoutBtn:active, #signoutBtn:link{
+/* #signoutBtn:visited, #signoutBtn:active, #signoutBtn:link{
     color: var(--main-color);
     background-color: var(--Neg-color);
     font-weight: bold;
     text-decoration: none;
-}
+} */
 .section{
     display: flex;
     flex-direction: column;
@@ -297,3 +297,30 @@ button.serverBTN:hover{
 .hidden{
     display: none;
 }
+.headerBTNs{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.gotoLogin{
+    display: grid;
+    place-content: center;
+    color: var(--main-color);
+    background-color: var(--background-color);
+    border: none;
+    border-radius: 3px;
+    width: 80px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.gotoLogin:hover{
+    cursor: pointer;
+    background-color: var(--hover-background-color);
+}
+/* .gotoLogin:visited, .gotoLogin:active, .gotoLogin:link{
+    color: var(--main-color);
+    background-color: var(--background-color);
+    font-weight: bold;
+    text-decoration: none;
+} */

@@ -171,4 +171,10 @@ class view{
             }
         });
     }
+    SignInUpBtn(Connection){
+        document.querySelector(".gotoLogin").addEventListener('click', (event) => {
+            event.target.href = "/Login/";
+            Connection();
+        });
+    }
 }
