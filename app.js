@@ -25,7 +25,7 @@ app.get('/' , (req, res) => {
 
 app.get('/Login', (req, res) => {
     // res.sendFile(path.join(__dirname+'/views/LoginPage.ejs'))
-    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {alert: '', flag: true, data: '', SUAlert: ''});
+    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {mainFlag: false, alert: '', flag: true, data: '', SUAlert: ''});
 });
 
 app.post('/download/:data', (req, res) => {
@@ -64,8 +64,8 @@ app.get('/SignIn/:data', (req, res) => {
     data = data.slice(1, data.length);
     if(data == 'guest'){
         OpenedUser = 'guest';
-        todosData = ReadDB('guest'); 
-        res.render(path.join(__dirname+'/views/LoginPage.ejs'), {alert: '', flag: true, data: todosData, SUAlert: ''});
+        todosData = ReadDB(OpenedUser); 
+        res.render(path.join(__dirname+'/views/LoginPage.ejs'), {mainFlag: false, alert: '', flag: true, data: todosData, SUAlert: ''});
         return;
     }
     else{
@@ -83,9 +83,12 @@ app.get('/SignIn/:data', (req, res) => {
 
         if(result.result){
             OpenedUser = username;
+            todosData = ReadDB(OpenedUser);
+
+            res.render(path.join(__dirname+'/views/LoginPage.ejs'), {mainFlag: true, data: todosData, username: OpenedUser});
         }
 
-        res.render(path.join(__dirname+'/views/LoginPage.ejs'), {alert: result.alert, flag: result.result, data: todosData, SUAlert: ''});
+        res.render(path.join(__dirname+'/views/LoginPage.ejs'), {mainFlag: false, alert: result.alert, flag: result.result, data: todosData, SUAlert: ''});
     }
 });
 
@@ -110,6 +113,9 @@ app.get('/SignUp/:data', (req, res) => {
 });
 
 ReadDB = (username) => {
+    if(username == 'null'){
+        return null;
+    }
     let result='';
     let adderss = __dirname + `\\Programs\\Todo\\Database\\${username}.txt`;
     
@@ -119,6 +125,9 @@ ReadDB = (username) => {
 }
     
 WriteDB = (result, username) => {
+    if(username == 'null'){
+        return;
+    }
     let adderss = __dirname + `\\Programs\\Todo\\Database\\${username}.txt`;
     Fs.writeFile(adderss, result, (err) => {
         if(err) throw err;

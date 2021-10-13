@@ -153,4 +153,16 @@ class view{
             }
         });
     }
+    SignOut(Connection){
+        document.querySelector("#signoutBtn").addEventListener('click', (event) => {
+            let isConfirm = confirm("Are you sure for signout?");
+            if(isConfirm){
+                event.target.href = "/Login/";
+                Connection();
+            }
+            else{
+                event.target.href = "";
+            }
+        });
+    }
 }

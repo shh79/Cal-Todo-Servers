@@ -1,3 +1,9 @@
+// window.addEventListener('load', () => {
+//     try{
+//         localStorage[0] = document.querySelector("#todoDatas").innerHTML;
+//     }
+//     catch{}
+// });
 function OpenContainer(type){
     let containers = document.querySelectorAll(".tabContainer");
 
@@ -37,47 +43,59 @@ async function SignUpFunc(username, pass, rePass){
     });
 }
 
-document.querySelector("#SignInBtn").addEventListener('click', () => {
-    OpenContainer('in');
-});
-
-document.querySelector("#SignUpBtn").addEventListener('click', () => {
-    OpenContainer('up');
-});
-
-document.querySelector("#green").addEventListener('click', (event) => {
-    let username = document.querySelector("#UserIn").value;
-    let pass = document.querySelector("#PassIn").value;
-
-    pass = String(encoding(pass));
-
-    if(username != '' && pass != ''){
+try{
+    document.querySelector("#SignInBtn").addEventListener('click', () => {
+        OpenContainer('in');
+    });
+    
+    document.querySelector("#SignUpBtn").addEventListener('click', () => {
+        OpenContainer('up');
+    });
+    
+    document.querySelector("#green").addEventListener('click', (event) => {
+        let username = document.querySelector("#UserIn").value;
+        let pass = document.querySelector("#PassIn").value;
+    
+        pass = String(encoding(pass));
+    
+        if(username != '' && pass != ''){
+            event.target.href = `/SignIn/:${username},${pass}`;
+        }
+        else{
+            alert("Please fill the blank.");
+        }
+    });
+    
+    document.querySelector("#red").addEventListener('click', (event) => {
+        let username = document.querySelector("#UserUp").value;
+        let pass = document.querySelector("#PassUp").value;
+        let rePass = document.querySelector("#RePassUp").value;
+    
+        pass = String(encoding(pass));
+        rePass = String(encoding(rePass));
+    
+        if(username != '' && pass != '' && rePass != ''){
+            event.target.href = `/SignUp/:${username},${pass},${rePass}`;
+        }
+        else{
+            alert("Please fill the blank.");
+        }
+    });
+    
+    document.querySelector("#guestLink").addEventListener('click', (event) => {
+        let username = document.querySelector("#UserIn").value;
+        let pass = document.querySelector("#PassIn").value;
+    
         event.target.href = `/SignIn/:${username},${pass}`;
-    }
-    else{
-        alert("Please fill the blank.");
-    }
-});
-
-document.querySelector("#red").addEventListener('click', (event) => {
-    let username = document.querySelector("#UserUp").value;
-    let pass = document.querySelector("#PassUp").value;
-    let rePass = document.querySelector("#RePassUp").value;
-
-    pass = String(encoding(pass));
-    rePass = String(encoding(rePass));
-
-    if(username != '' && pass != '' && rePass != ''){
-        event.target.href = `/SignUp/:${username},${pass},${rePass}`;
-    }
-    else{
-        alert("Please fill the blank.");
-    }
-});
-
-document.querySelector("#guestLink").addEventListener('click', (event) => {
-    let username = document.querySelector("#UserIn").value;
-    let pass = document.querySelector("#PassIn").value;
-
-    event.target.href = `/SignIn/:${username},${pass}`;
-});
+    });
+    
+}
+catch{
+    document.querySelector(".confirmBTN").addEventListener('click', (event) => {
+        localStorage[0] = document.querySelector("#todosData").innerHTML;
+        localStorage[1] = document.querySelector("#user").innerHTML;
+    });
+    document.querySelector(".cancelBTN").addEventListener('click', (event) => {
+        localStorage.clear();
+    });
+}

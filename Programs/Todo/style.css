@@ -70,6 +70,8 @@ html,body{
     background-color: var(--background-color);
 }
 #signoutBtn{
+    display: grid;
+    place-content: center;
     color: var(--main-color);
     background-color: var(--Neg-color);
     border: none;
@@ -77,10 +79,17 @@ html,body{
     width: 80px;
     font-size: 15px;
     font-weight: bold;
+    text-decoration: none;
 }
 #signoutBtn:hover{
     cursor: pointer;
     background-color: var(--hover-Neg-color);
+}
+#signoutBtn:visited, #signoutBtn:active, #signoutBtn:link{
+    color: var(--main-color);
+    background-color: var(--Neg-color);
+    font-weight: bold;
+    text-decoration: none;
 }
 .section{
     display: flex;

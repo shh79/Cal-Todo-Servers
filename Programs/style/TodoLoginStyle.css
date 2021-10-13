@@ -134,3 +134,55 @@ button.tab:hover{
     color: rgb(255, 0, 0);
     text-align: left;
 }
+.container2{
+    grid-column: 14 / 19;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 45%;
+    background-color: rgba(0,0,0, 0.6);
+    border: none;
+    border-radius: 5px;
+}
+.container2 h1{
+    display: grid;
+    place-content: center;
+}
+.container2 form{
+    display: grid;
+    place-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.container2 form a{
+    display: grid;
+    place-content: center;
+}
+.buttonType{
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 65px;
+    margin-left: 23px;
+    padding: 5px 0px 5px 7px;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    height: 35px;
+    width: 7em;
+    border: none;
+    border-radius: 5px;
+}
+.confirmBTN{
+    background-color: rgba(172, 255, 46, 0.8);
+    
+}
+.confirmBTN:hover{
+    background-color: rgba(172, 255, 46, 0.7);
+}
+.cancelBTN{
+    background-color: rgba(255, 0, 0, 0.8);
+}
+.cancelBTN:hover{
+    background-color: rgba(255, 0, 0, 0.7);
+}

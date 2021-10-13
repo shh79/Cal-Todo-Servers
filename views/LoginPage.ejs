@@ -15,6 +15,7 @@
             <h1>Todo List</h1>
             <p>Developed by Hessam Hosseini</p>
         </div>
+    <% if(!mainFlag){ %>
         <div class="container">
             <button class="tab" id="SignInBtn">Sign In</button>
             <button class="tab" id="SignUpBtn"> Sign Up</button>
@@ -30,8 +31,9 @@
                     <% }
                     else { %>
                         <br><br>
+                        <!-- <div class="hidden" id="todoDatas"><%= data %></div> -->
                     <% } %>
-
+                    
                     <a href="/SignIn/:," id="green">Sign In</a>
                     <br>
                     <a href="/SignIn/:," id='guestLink'>Sign in as guest.</a>
@@ -48,6 +50,18 @@
                 </form>
             </div>
         </div>
+    <% }
+    else{ %>
+        <div class="container2">
+            <h1>Are you sure?</h1>
+            <form action="">
+                <a href="/Todo/" class="confirmBTN buttonType" >OK</a>
+                <a href="/Login/" class="cancelBTN buttonType" >Cancel</a>
+            </form>
+            <div class="hidden" id="todosData"><%= data %></div>
+            <div class="hidden" id="user"><%= username %></div>
+        </div>
+    <% } %>
     </div>
 
     <script src="/js/TodoLoginFuncs.js"></script>

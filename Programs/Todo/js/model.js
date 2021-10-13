@@ -120,4 +120,7 @@ class model{
             method: 'POST',
         });
     }
+    SignOut(){
+        localStorage.clear();
+    }
 }
