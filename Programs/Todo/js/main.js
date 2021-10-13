@@ -6,4 +6,15 @@ window.addEventListener('load', () => {
     str = firstLetter.toUpperCase() + str.substr(1);
 
     document.querySelector(".UsernameBanner").innerHTML = str;
+
+    if(str.toUpperCase() == "GUEST PANEL"){
+        document.querySelector("#hint").classList.remove("hidden");
+        document.querySelector("#uploadForm").action = "/Todo/";
+        document.querySelector("#uploadForm").method = "";
+    }
+    else{
+        document.querySelector("#hint").classList.add("hidden");
+        document.querySelector("#uploadForm").action = "/upload";
+        document.querySelector("#uploadForm").method = "POST";
+    }
 });

@@ -294,3 +294,6 @@ button.serverBTN:hover{
 #UploadBTN:hover{
     background-color: rgb(218, 12, 12);
 }
+.hidden{
+    display: none;
+}

@@ -1,9 +1,3 @@
-// window.addEventListener('load', () => {
-//     try{
-//         localStorage[0] = document.querySelector("#todoDatas").innerHTML;
-//     }
-//     catch{}
-// });
 function OpenContainer(type){
     let containers = document.querySelectorAll(".tabContainer");
 
@@ -83,10 +77,8 @@ try{
     });
     
     document.querySelector("#guestLink").addEventListener('click', (event) => {
-        let username = document.querySelector("#UserIn").value;
-        let pass = document.querySelector("#PassIn").value;
-    
-        event.target.href = `/SignIn/:${username},${pass}`;
+        localStorage[0] = 'null';
+        localStorage[1] = 'Guest Panel';
     });
     
 }

@@ -145,11 +145,17 @@ class view{
     }
     Download(Connection){
         this.ServerSection.addEventListener("click", event => {
-            if(event.target.innerText=="Download"){
-                let isConfirm = confirm("Are you sure for download todos to your database?");
-                if(isConfirm){
-                    Connection();
+            let flag = document.querySelector("#hint").classList.contains("hidden");
+            if(flag){
+                if(event.target.innerText=="Download"){
+                    let isConfirm = confirm("Are you sure for download todos to your database?");
+                    if(isConfirm){
+                        Connection();
+                    }
                 }
+            }
+            else{
+                alert("You are a guest and you can't to upload and download on database.");
             }
         });
     }

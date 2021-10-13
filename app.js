@@ -12,7 +12,7 @@ let router = express.Router();
 
 const port = 2020;
 const DatabaseAddress = __dirname + `\\Programs\\Todo\\Database\\UserDatabase.json`;
-let OpenedUser = null;
+let OpenedUser = 'null';
 
 app.set('view engine', 'ejs');
 
@@ -87,8 +87,9 @@ app.get('/SignIn/:data', (req, res) => {
 
             res.render(path.join(__dirname+'/views/LoginPage.ejs'), {mainFlag: true, data: todosData, username: OpenedUser});
         }
-
-        res.render(path.join(__dirname+'/views/LoginPage.ejs'), {mainFlag: false, alert: result.alert, flag: result.result, data: todosData, SUAlert: ''});
+        else{
+            res.render(path.join(__dirname+'/views/LoginPage.ejs'), {mainFlag: false, alert: result.alert, flag: result.result, data: todosData, SUAlert: ''});
+        }
     }
 });
 
@@ -109,7 +110,7 @@ app.get('/SignUp/:data', (req, res) => {
 
     console.log(result);
 
-    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {alert: '', flag: true, data: '', SUAlert: result.alert})
+    res.render(path.join(__dirname+'/views/LoginPage.ejs'), {mainFlag: false, alert: '', flag: true, data: '', SUAlert: result.alert})
 });
 
 ReadDB = (username) => {
@@ -126,7 +127,7 @@ ReadDB = (username) => {
     
 WriteDB = (result, username) => {
     if(username == 'null'){
-        return;
+        return null;
     }
     let adderss = __dirname + `\\Programs\\Todo\\Database\\${username}.txt`;
     Fs.writeFile(adderss, result, (err) => {

@@ -12,6 +12,7 @@
     <div class="main">
         <div class="header">
             <div class="UsernameBanner">Username</div>
+            <p class="hidden" id="hint" style="color: red;">Your 'Does' won't save because you are still a guest.</p>
             <a href="" id='signoutBtn'>Sign Out</a>
         </div>
         <div class="WorkSpace">
@@ -65,7 +66,7 @@
                         <div style="display: none;" id="editID"></div>
                     </div>
                     <div class="server">
-                        <form action="/upload" method="POST">
+                        <form action="/upload" id="uploadForm" method="post">
                             <!-- <button type="button" class="serverBTN" id="UploadBTN">Upload</button> -->
                             <button type="submit" class="serverBTN" id="UploadBTN">Upload</button>
                         </form>
